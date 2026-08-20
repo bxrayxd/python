@@ -32,25 +32,22 @@ def get_input():
     return year, month, day, hour, minute
 
 
-def get_shift_rotation(year, month, day):
+def get_shift_rotation(year: int, month: int, day: int):
     current_date = datetime(year, month, day)
     reference_date = datetime(2025, 12, 30)
 
     days_passed = (current_date - reference_date).days + 1
-    print(days_passed)
     rotation = (days_passed - 1) // 4 + 1
-    print(rotation)
     return rotation
 
 
-def get_shift(rotation) -> tuple[str, str]:
+def get_shift(rotation: int) -> tuple[str, str]:
     if rotation % 2 == 0:
         first_group, second_group = "C", "D"
     else:
         first_group, second_group = "A", "B"
 
     remainder = rotation % 4 + 1
-    print(remainder)
 
     if remainder == 1:
         return first_group, second_group
